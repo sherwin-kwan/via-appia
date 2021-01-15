@@ -1,7 +1,7 @@
 import logo from '../logo.svg';
 import '../stylesheets/App.scss';
 import Map from './Map';
-import RoutesList from './RoutesList';
+import MovementsList from './MovementsList';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         VIA APPIA
       </header>
       <main>
-        <RoutesList />
+        <MovementsList />
         <Map />
       </main>
     </div>

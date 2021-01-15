@@ -1,5 +1,7 @@
+@import "table.scss";
+
 html {
-  font-size: 2vh;
+  font-size: max(14px, 2vh);
 }
 
 .App {
