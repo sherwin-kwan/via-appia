@@ -6,9 +6,11 @@ const MovementRow = (props) => {
   return (
   <tr>
     <td>{data.id}</td>
-    <td>{data.startLocation}</td>
-    <td>{data.endLocation}</td>
+    <td title={`Latitude: ${data.startLat}, Longitude: ${data.startLong}`}>{data.startLocation}</td>
+    <td title={`Latitude: ${data.endLat}, Longitude: ${data.endLong}`}>{data.endLocation}</td>
     <td>{data.freight}</td>
+    <td>Edit</td>
+    <td>Delete</td>
   </tr>);
 };
 
