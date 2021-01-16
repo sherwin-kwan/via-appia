@@ -9,8 +9,8 @@ const MovementRow = (props) => {
     <td title={`Latitude: ${data.startLat}, Longitude: ${data.startLong}`}>{data.startLocation}</td>
     <td title={`Latitude: ${data.endLat}, Longitude: ${data.endLong}`}>{data.endLocation}</td>
     <td>{data.freight}</td>
-    <td>Edit</td>
-    <td>Delete</td>
+    <td><button onClick={() => props.editFunction}>Edit</button></td>
+    <td><button onClick={() => props.deleteFunction(data.id)}>Delete</button></td>
   </tr>);
 };
 
