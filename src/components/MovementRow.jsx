@@ -10,7 +10,7 @@ const MovementRow = (props) => {
     <td title={`Latitude: ${data.startLat}, Longitude: ${data.startLong}`}>{data.startLocation}</td>
     <td title={`Latitude: ${data.endLat}, Longitude: ${data.endLong}`}>{data.endLocation}</td>
     <td>{data.freight}</td>
-    <td><button onClick={() => props.editFunction}>Edit</button></td>
+    <td><button onClick={() => props.setDetailsScreen(true)}>Edit</button></td>
     <td><button onClick={async () => {
       const zero = await deleteFunction(data.id);
       await props.populateData();
