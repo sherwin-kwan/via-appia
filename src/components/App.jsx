@@ -4,6 +4,7 @@ import Map from './Map';
 import MovementsList from './MovementsList';
 
 function App() {
+
   return (
     <div className="App">
       <header>

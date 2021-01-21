@@ -1,52 +1,32 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 // import movementsData from "../data/movements.json";
 import MovementRow from "./MovementRow";
+import crudHelpers from '../helpers/crud';
 
 const MovementsList = (props) => {
   // States
   const [movements, setMovements] = useState([]);
-  const [trigger, setTrigger] = useState(0);
+  const {getMovementData } = crudHelpers();
 
-  const editFunction = (obj) => {
-    if (obj.id) {
-
+  async function populateData() {
+    const data = await getMovementData();
+    const initialMovements = data.map((movement) => {
+      console.log("Movement is ... ", movement);
+      return <MovementRow data={movement} key={movement.id} populateData={populateData} />;
+    });
+    if (initialMovements.length) {
+      setMovements(initialMovements);
+      console.log('Movements set');
     } else {
-      console.log('Error: No ID provided for editing');
-    }
-  };
-
-  const deleteFunction = (id) => {
-    if (id) {
-      axios.delete(`/movements/${id}`);
-      setTrigger(prev => prev + 1);
-    } else {
-      console.log('Error: No ID provided for deleting');
+      setMovements(<tr><td colSpan="6">There are no movements in the database.</td></tr>);
+      console.log('Movements set');
     }
   };
 
   // Load movements from database
   useEffect(() => {
-    async function getMovementData() {
-      try {
-        const rawData = await axios.get("/movements");
-        const { data } = rawData;
-        // Grab initial list of movements
-        const initialMovements = data.map((movement) => {
-          console.log("Movement is ... ", movement);
-          return <MovementRow data={movement} key={movement.id} editFunction={editFunction} deleteFunction={deleteFunction} />;
-        });
-        if (initialMovements.length) {
-          setMovements(initialMovements);
-        } else {
-          setMovements(<tr><td colSpan="6">There are no movements in the database.</td></tr>)
-        }
-      } catch (err) {
-        console.log("Error: ", err.message);
-      }
-    }
-    getMovementData();
-  }, [trigger]);
+    populateData();
+  }, []);
 
   const createMovement = () => {
     console.log("Movement creation");
