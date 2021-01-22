@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 // import movementsData from "../data/movements.json";
 import MovementRow from "./MovementRow";
 import crudHelpers from "../helpers/crud";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 import DetailsScreen from "./DetailsScreen";
+import useDetailsScreen from "../helpers/useDetailsScreen";
 
 const MovementsList = (props) => {
   // States
   const [movements, setMovements] = useState([]);
   const { getMovementData } = crudHelpers();
+  // Custom Hooks
+  const detailsHook = useDetailsScreen();
+  const { mode, setMode, activeMovement, setActiveMovement, detailsScreenShow, setDetailsScreenShow } = detailsHook;
 
   async function populateData() {
     const data = await getMovementData();
@@ -18,6 +22,7 @@ const MovementsList = (props) => {
           data={movement}
           key={movement.id}
           populateData={populateData}
+          showDetails={showDetails}
         />
       );
     });
@@ -32,7 +37,9 @@ const MovementsList = (props) => {
     }
   };
 
-  const showDetails = (movement, isEdit, setDetailsScreenShow) => {
+  const showDetails = (movement, mode) => {
+    setMode(mode);
+    setActiveMovement(movement);
     setDetailsScreenShow(true);
   };
 
@@ -50,13 +57,9 @@ const MovementsList = (props) => {
     }
   }, [detailsScreenShow]);
 
-  const createMovement = () => {
-    console.log("Movement creation");
-  };
-
   return (
     <>
-      {detailsScreenShow && <DetailsScreen setDetailsScreenShow={setDetailsScreenShow} mode={} movement={activeMovement} />}
+      {detailsScreenShow && <DetailsScreen setDetailsScreenShow={setDetailsScreenShow} mode={mode} movement={activeMovement} />}
       <div className="movements-list">
         <h2>MOVEMENTS</h2>
         <table>
@@ -72,10 +75,14 @@ const MovementsList = (props) => {
           </thead>
           <tbody>{movements}</tbody>
         </table>
-        <button onClick={createMovement}>Create New Movement</button>
+        <button onClick={() => showDetails({}, "CREATE")}>Create New Movement</button>
       </div>
     </>
   );
+};
+
+MovementsList.propTypes = {
+
 };
 
 export default MovementsList;

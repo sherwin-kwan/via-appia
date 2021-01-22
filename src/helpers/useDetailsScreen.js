@@ -2,16 +2,11 @@ import { useState } from 'react';
 
 const useDetailsScreen = (data, show) => {
   
-  const [showDetails, setShowDetails] = useState(show);
-  const [movement, setMovement] = useState({});
+  const [mode, setMode] = useState("VIEW");
+  const [activeMovement, setActiveMovement] = useState({});
+  const [detailsScreenShow, setDetailsScreenShow] = useState(false);
 
-  // Need to 
-
-  const getMovement = function(id) {
-    return data.find(movement => movement.id === id);
-  };
-
-  return { showDetails, setShowDetails, movement, setMovement };
+  return { mode, setMode, activeMovement, setActiveMovement, detailsScreenShow, setDetailsScreenShow };
 };
 
 export default useDetailsScreen;

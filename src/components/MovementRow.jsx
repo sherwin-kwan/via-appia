@@ -8,13 +8,13 @@ const MovementRow = (props) => {
 
   return (
   <tr>
-    <td onClick={() => props.showDetails(data, false, setDetailsScreenShow)}>{data.id}</td>
+    <td onClick={() => props.showDetails(data, "VIEW")}>{data.id}</td>
     <td title={`Latitude: ${data.startLat}, Longitude: ${data.startLong}`}>{data.startLocation}</td>
     <td title={`Latitude: ${data.endLat}, Longitude: ${data.endLong}`}>{data.endLocation}</td>
     <td>{data.freight}</td>
-    <td><button onClick={() => showDetails(data, true, setDetailsScreenShow)}>Edit</button></td>
+    <td><button onClick={() => props.showDetails(data, "EDIT")}>Edit</button></td>
     <td><button onClick={async () => {
-      const zero = await deleteFunction(data.id);
+      await deleteFunction(data.id);
       await props.populateData();
     }}>Delete</button></td>
   </tr>);
