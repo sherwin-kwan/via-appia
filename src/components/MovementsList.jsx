@@ -8,39 +8,47 @@ import DetailsScreen from "./DetailsScreen";
 const MovementsList = (props) => {
   // States
   const [movements, setMovements] = useState([]);
-  const [detailsScreen, setDetailsScreen] = useState(false);
   const { getMovementData } = crudHelpers();
 
   async function populateData() {
     const data = await getMovementData();
     const initialMovements = data.map((movement) => {
-      console.log("Movement is ... ", movement);
       return (
         <MovementRow
           data={movement}
           key={movement.id}
-          setDetailsScreen={setDetailsScreen}
           populateData={populateData}
         />
       );
     });
     if (initialMovements.length) {
       setMovements(initialMovements);
-      console.log("Movements set");
     } else {
       setMovements(
         <tr>
           <td colSpan="6">There are no movements in the database.</td>
         </tr>
       );
-      console.log("Movements set");
     }
-  }
+  };
+
+  const showDetails = (movement, isEdit, setDetailsScreenShow) => {
+    setDetailsScreenShow(true);
+  };
 
   // Load movements from database
   useEffect(() => {
     populateData();
   }, []);
+
+  // Blur and un-blur body when modal is showing
+  useEffect(() => {
+    if (detailsScreenShow) {
+      document.querySelector('main').classList.add('blurred');
+    } else {
+      document.querySelector('main').classList.remove('blurred');
+    }
+  }, [detailsScreenShow]);
 
   const createMovement = () => {
     console.log("Movement creation");
@@ -48,7 +56,7 @@ const MovementsList = (props) => {
 
   return (
     <>
-      {detailsScreen && <DetailsScreen setDetailsScreen={setDetailsScreen} />}
+      {detailsScreenShow && <DetailsScreen setDetailsScreenShow={setDetailsScreenShow} mode={} movement={activeMovement} />}
       <div className="movements-list">
         <h2>MOVEMENTS</h2>
         <table>
