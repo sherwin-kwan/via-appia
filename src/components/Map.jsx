@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import myApiKey from "../helpers/apikey";
 import Pointer from "./Pointer";
+import colours from "../helpers/colours";
 
 const Map = (props) => {
   const [theMap, setTheMap] = useState(null);
@@ -43,10 +44,11 @@ const Map = (props) => {
           { lat: movement.endLat, lng: movement.endLong },
         ],
         geodesic: true,
-        strokeColor: "blue",
+        strokeColor: colours[movement.id % 8],
         strokeOpacity: 1.0,
         strokeWeight: 5,
       });
+      
       path[movement.id].setMap(map);
     });
     console.log(path);

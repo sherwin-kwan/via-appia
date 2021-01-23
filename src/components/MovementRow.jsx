@@ -1,13 +1,14 @@
 import React from 'react';
 import crudHelpers from '../helpers/crud';
 import PropTypes from 'prop-types';
+import colours from '../helpers/colours';
 
 const MovementRow = (props) => {
   const { deleteFunction, editFunction } = crudHelpers();
   const { data } = props;
 
   return (
-  <tr>
+  <tr style={{"background-color": colours[data.id % 8]}}>
     <td className="details-link" onClick={() => props.showDetails(data, "VIEW")}>{data.id}</td>
     <td title={`Latitude: ${data.startLat}, Longitude: ${data.startLong}`}>{data.startLocation}</td>
     <td title={`Latitude: ${data.endLat}, Longitude: ${data.endLong}`}>{data.endLocation}</td>

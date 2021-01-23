@@ -1,5 +1,6 @@
 table {
-  background-color: yellow;
+  background-color: black;
+  color: white;
   border-collapse: collapse;
 
   th, td {
@@ -8,7 +9,7 @@ table {
   }
 
   .details-link {
-    color: blue;
+    color: white;
     text-decoration: underline;
 
     &:hover{
