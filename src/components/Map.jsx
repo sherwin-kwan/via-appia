@@ -2,7 +2,6 @@ import React from "react";
 import GoogleMapReact from "google-map-react";
 import myApiKey from "../helpers/apikey";
 import Pointer from "./Pointer";
-import LineTo from 'react-lineto';
 
 const Map = (props) => {
   const startPointers = props.movements.map((movement) => {
