@@ -1,9 +1,22 @@
 import logo from "../logo.svg";
+import React, { useState } from "react";
 import "../stylesheets/App.scss";
 import Map from "./Map";
+import crudHelpers from "../helpers/crud";
 import MovementsList from "./MovementsList";
+import useDetailsScreen from "../helpers/useDetailsScreen";
 
 function App() {
+  // States
+  const [movements, setMovements] = useState([]);
+  // Custom Hooks
+  const detailsHook = useDetailsScreen();
+
+  async function populateData() {
+    const data = await crudHelpers().getMovementData();
+    setMovements(data);
+  };
+
   return (
     <div className="App">
       <header>
@@ -11,8 +24,13 @@ function App() {
         VIA APPIA
       </header>
       <main>
-        <MovementsList />
-        <Map />
+        <MovementsList
+          movements={movements}
+          setMovements={setMovements}
+          detailsHook={detailsHook}
+          populateData={populateData}
+        />
+        <Map movements={movements} detailsHook={detailsHook} />
       </main>
     </div>
   );

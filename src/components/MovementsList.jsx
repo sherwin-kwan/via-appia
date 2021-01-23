@@ -1,41 +1,42 @@
 import React, { useEffect, useState } from "react";
 // import movementsData from "../data/movements.json";
 import MovementRow from "./MovementRow";
-import crudHelpers from "../helpers/crud";
 import PropTypes from "prop-types";
 import DetailsScreen from "./DetailsScreen";
-import useDetailsScreen from "../helpers/useDetailsScreen";
 
 const MovementsList = (props) => {
-  // States
-  const [movements, setMovements] = useState([]);
-  const { getMovementData } = crudHelpers();
-  // Custom Hooks
-  const detailsHook = useDetailsScreen();
-  const { mode, setMode, activeMovement, setActiveMovement, detailsScreenShow, setDetailsScreenShow } = detailsHook;
+  const {
+    mode,
+    setMode,
+    activeMovement,
+    setActiveMovement,
+    detailsScreenShow,
+    setDetailsScreenShow,
+  } = props.detailsHook;
 
-  async function populateData() {
-    const data = await getMovementData();
-    const initialMovements = data.map((movement) => {
+  const [movementRows, setMovementRows] = useState(null);
+
+  useEffect(() => {
+    const initialMovements = props.movements.map((movement) => {
       return (
         <MovementRow
           data={movement}
           key={movement.id}
-          populateData={populateData}
+          populateData={props.populateData}
           showDetails={showDetails}
         />
       );
     });
     if (initialMovements.length) {
-      setMovements(initialMovements);
+      setMovementRows(initialMovements);
     } else {
-      setMovements(
+      setMovementRows(
         <tr>
           <td colSpan="6">There are no movements in the database.</td>
         </tr>
       );
     }
-  };
+  }, [props.movements]);
 
   const showDetails = (movement, mode) => {
     setMode(mode);
@@ -45,21 +46,27 @@ const MovementsList = (props) => {
 
   // Load movements from database
   useEffect(() => {
-    populateData();
+    props.populateData();
   }, [detailsScreenShow]);
 
   // Blur and un-blur body when modal is showing
   useEffect(() => {
     if (detailsScreenShow) {
-      document.querySelector('main').classList.add('blurred');
+      document.querySelector("main").classList.add("blurred");
     } else {
-      document.querySelector('main').classList.remove('blurred');
+      document.querySelector("main").classList.remove("blurred");
     }
   }, [detailsScreenShow]);
 
   return (
     <>
-      {detailsScreenShow && <DetailsScreen setDetailsScreenShow={setDetailsScreenShow} mode={mode} movement={activeMovement} />}
+      {detailsScreenShow && (
+        <DetailsScreen
+          setDetailsScreenShow={setDetailsScreenShow}
+          mode={mode}
+          movement={activeMovement}
+        />
+      )}
       <div className="movements-list">
         <h2>MOVEMENTS</h2>
         <table>
@@ -73,16 +80,16 @@ const MovementsList = (props) => {
               <th>-</th>
             </tr>
           </thead>
-          <tbody>{movements}</tbody>
+          <tbody>{movementRows}</tbody>
         </table>
-        <button onClick={() => showDetails({}, "CREATE")}>Create New Movement</button>
+        <button onClick={() => showDetails({}, "CREATE")}>
+          Create New Movement
+        </button>
       </div>
     </>
   );
 };
 
-MovementsList.propTypes = {
-
-};
+MovementsList.propTypes = {};
 
 export default MovementsList;
