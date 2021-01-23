@@ -5,6 +5,7 @@
 /build
 
 # hiding api keys
+googlemaps.js
 apikey.js
 
 # Logs

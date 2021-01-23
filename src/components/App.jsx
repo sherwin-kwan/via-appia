@@ -1,10 +1,9 @@
-import logo from '../logo.svg';
-import '../stylesheets/App.scss';
-import Map from './Map';
-import MovementsList from './MovementsList';
+import logo from "../logo.svg";
+import "../stylesheets/App.scss";
+import Map from "./Map";
+import MovementsList from "./MovementsList";
 
 function App() {
-
   return (
     <div className="App">
       <header>
