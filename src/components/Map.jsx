@@ -28,12 +28,23 @@ const Map = (props) => {
     );
   });
 
-  // const drawLines = props.movements.map(movement => {
-  //     return (
-  //       <LineTo from={"A" + String(movement.id)} to={"B" + String(movement.id)} />
-  //     );
-  //   });
-
+  const handleApiLoaded = (map, maps, movements) => {
+    const path = new Array;
+    movements.forEach((movement) => {
+      path[movement.id] = new maps.Polyline({
+        path: [
+          { lat: movement.startLat, lng: movement.startLong },
+          { lat: movement.endLat, lng: movement.endLong },
+        ],
+        geodesic: true,
+        strokeColor: "blue",
+        strokeOpacity: 1.0,
+        strokeWeight: 5,
+      });
+      path[movement.id].setMap(map);
+    });
+  };
+  
   console.log("Loading map");
   return (
     <aside>
@@ -43,6 +54,10 @@ const Map = (props) => {
           bootstrapURLKeys={{ key: myApiKey }}
           defaultCenter={{ lat: 49.25, lng: -123 }}
           defaultZoom={8}
+          yesIWantToUseGoogleMapApiInternals={true}
+          onGoogleApiLoaded={({ map, maps }) =>
+            handleApiLoaded(map, maps, props.movements)
+          }
         >
           {startPointers}
           {endPointers}
