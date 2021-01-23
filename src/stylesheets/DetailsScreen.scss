@@ -24,4 +24,13 @@ div.modal {
   button {
     margin: 1rem;
   }
+
+  form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hide {
+    display: none;
+  }
 }

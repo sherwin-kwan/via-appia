@@ -8,7 +8,7 @@ const MovementRow = (props) => {
 
   return (
   <tr>
-    <td onClick={() => props.showDetails(data, "VIEW")}>{data.id}</td>
+    <td className="details-link" onClick={() => props.showDetails(data, "VIEW")}>{data.id}</td>
     <td title={`Latitude: ${data.startLat}, Longitude: ${data.startLong}`}>{data.startLocation}</td>
     <td title={`Latitude: ${data.endLat}, Longitude: ${data.endLong}`}>{data.endLocation}</td>
     <td>{data.freight}</td>

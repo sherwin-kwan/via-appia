@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
+import crudHelpers from "../helpers/crud";
 
 const DetailsScreen = (props) => {
-  const { mode, movement } = props;
+  const { mode } = props;
+  const [movement, setMovement] = useState(props.movement);
+  const { submitMovementForm } = crudHelpers();
 
-  const submitMovementForm = (event) => {
-    event.preventDefault();
-    console.log("SUBMITTED");
+  const handleChange = (event) => {
+    setMovement(prev => { 
+      return {...prev, 
+        [event.target.name]: event.target.value
+      }
+    })
   };
 
   const title = (mode === "CREATE") ? "Create Movement" : (mode === "EDIT") ? `Editing Movement ${movement.id}` : `Viewing Movement ${movement.id}`;
@@ -14,31 +20,35 @@ const DetailsScreen = (props) => {
     <div className="modal">
       <h2>{title}</h2>
       <div className="content">
-        <form>
+        <form className="crud">
           <label htmlFor="start-location">Starting Location: </label>
-          <input type="text" id="start-location" name="start-location" value={movement.startLocation || ""} />
+          <input type="text" id="start-location" name="startLocation" value={movement.startLocation} onChange={handleChange} />
           <label htmlFor="start-lat">Starting Latitude: </label>
-          <input type="text" id="start-lat" name="start-lat" value={movement.startLat || ""} />
+          <input type="text" id="start-lat" name="startLat" value={movement.startLat} onChange={handleChange} />
           <label htmlFor="start-long">Starting Longitude: </label>
-          <input type="text" id="start-long" name="start-long" value={movement.startLong || ""} />
+          <input type="text" id="start-long" name="startLong" value={movement.startLong} onChange={handleChange} />
           <label htmlFor="end-location">Ending Location: </label>
-          <input type="text" id="end-location" name="end-location" value={movement.endLocation || ""} />
+          <input type="text" id="end-location" name="endLocation" value={movement.endLocation} onChange={handleChange} />
           <label htmlFor="end-lat">Ending Latitude: </label>
-          <input type="text" id="end-lat" name="end-lat" value={movement.endLat || ""} />
+          <input type="text" id="end-lat" name="endLat" value={movement.endLat} onChange={handleChange}/>
           <label htmlFor="end-long">Ending Longitude: </label>
-          <input type="text" id="end-long" name="end-long" value={movement.endLong || ""} />
+          <input type="text" id="end-long" name="endLong" value={movement.endLong} onChange={handleChange} />
+          <label htmlFor="end-long">Freight: </label>
+          <input type="text" id="end-long" name="freight" value={movement.freight} onChange={handleChange} />
+          <label htmlFor="end-long">Detailed Description: </label>
+          <textarea rows="5" id="end-long" name="details" value={movement.details} onChange={handleChange} />
         </form>
       </div>
       <div className="actions">
         <input
           type="submit"
-          className="save-button"
-          onClick={submitMovementForm}
+          className={mode === "VIEW" ? "hide" : "save-button"}
+          onClick={(e) => submitMovementForm(e, mode, movement)}
           value="Save" />
         <button
           className="cancel-button"
           onClick={() => props.setDetailsScreenShow(false)}>
-          Cancel
+          {mode === "VIEW" ? "Back" : "Cancel"}
         </button>
       </div>
     </div>
