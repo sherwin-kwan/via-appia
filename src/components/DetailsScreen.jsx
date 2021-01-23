@@ -22,28 +22,36 @@ const DetailsScreen = (props) => {
       <div className="content">
         <form className="crud">
           <label htmlFor="start-location">Starting Location: </label>
-          <input type="text" id="start-location" name="startLocation" value={movement.startLocation} onChange={handleChange} />
+          <input type="text" id="start-location" name="startLocation" value={movement.startLocation || ""} onChange={handleChange} />
           <label htmlFor="start-lat">Starting Latitude: </label>
-          <input type="text" id="start-lat" name="startLat" value={movement.startLat} onChange={handleChange} />
+          <input type="text" id="start-lat" name="startLat" value={movement.startLat || ""} onChange={handleChange} />
           <label htmlFor="start-long">Starting Longitude: </label>
-          <input type="text" id="start-long" name="startLong" value={movement.startLong} onChange={handleChange} />
+          <input type="text" id="start-long" name="startLong" value={movement.startLong || ""} onChange={handleChange} />
           <label htmlFor="end-location">Ending Location: </label>
-          <input type="text" id="end-location" name="endLocation" value={movement.endLocation} onChange={handleChange} />
+          <input type="text" id="end-location" name="endLocation" value={movement.endLocation || ""} onChange={handleChange} />
           <label htmlFor="end-lat">Ending Latitude: </label>
-          <input type="text" id="end-lat" name="endLat" value={movement.endLat} onChange={handleChange}/>
+          <input type="text" id="end-lat" name="endLat" value={movement.endLat || ""} onChange={handleChange}/>
           <label htmlFor="end-long">Ending Longitude: </label>
-          <input type="text" id="end-long" name="endLong" value={movement.endLong} onChange={handleChange} />
+          <input type="text" id="end-long" name="endLong" value={movement.endLong || ""} onChange={handleChange} />
           <label htmlFor="end-long">Freight: </label>
-          <input type="text" id="end-long" name="freight" value={movement.freight} onChange={handleChange} />
+          <input type="text" id="end-long" name="freight" value={movement.freight || ""} onChange={handleChange} />
           <label htmlFor="end-long">Detailed Description: </label>
-          <textarea rows="5" id="end-long" name="details" value={movement.details} onChange={handleChange} />
+          <textarea rows="5" id="end-long" name="details" value={movement.details || ""} onChange={handleChange} />
         </form>
       </div>
       <div className="actions">
         <input
           type="submit"
           className={mode === "VIEW" ? "hide" : "save-button"}
-          onClick={(e) => submitMovementForm(e, mode, movement)}
+          onClick={async (e) => {
+            const successful = await submitMovementForm(e, mode, movement);
+            if (successful) {
+              props.setDetailsScreenShow(false);
+            } else {
+              // Display error
+              alert("ERROR!");
+            }
+          }}
           value="Save" />
         <button
           className="cancel-button"

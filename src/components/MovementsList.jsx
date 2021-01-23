@@ -46,7 +46,7 @@ const MovementsList = (props) => {
   // Load movements from database
   useEffect(() => {
     populateData();
-  }, []);
+  }, [detailsScreenShow]);
 
   // Blur and un-blur body when modal is showing
   useEffect(() => {

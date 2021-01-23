@@ -41,10 +41,11 @@ const crudHelpers = () => {
   const submitMovementForm = async (event, mode, data) => {
     event.preventDefault();
     if (mode === "CREATE") {
-
+      const message = await axios.post(`/movements`, {data});
+      return message.data === "Done";
     } else {
       const message = await axios.post(`/movements/${data.id}`, {data});
-      console.log(message.data);
+      return message.data === "Done";
     }
   };
 
