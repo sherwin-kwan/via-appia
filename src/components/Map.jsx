@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import myApiKey from "../helpers/apikey";
 import Pointer from "./Pointer";
 
 const Map = (props) => {
-  let theMap; let apiMaps;
+  const [theMap, setTheMap] = useState(null);
+  const [apiMaps, setApiMaps] = useState(null);
 
   const startPointers = props.movements.map((movement) => {
     return (
@@ -31,6 +32,7 @@ const Map = (props) => {
   });
 
   const handleApiLoaded = (map, maps, movements) => {
+    console.log('Trying to do new movements', map, maps);
     if (!map || !maps) return;
     const path = new Array;
     console.log('movements are: ', movements);
@@ -65,8 +67,9 @@ const Map = (props) => {
           defaultZoom={8}
           yesIWantToUseGoogleMapApiInternals={true}
           onGoogleApiLoaded={({ map, maps }) => {
-            theMap = map;
-            apiMaps = maps;
+            setTheMap(map);
+            setApiMaps(maps);
+            console.log(`did it save `, theMap, apiMaps);
             return handleApiLoaded(map, maps, props.movements);
           }
           }
