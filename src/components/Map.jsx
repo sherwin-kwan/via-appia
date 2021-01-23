@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import myApiKey from "../helpers/apikey";
 import Pointer from "./Pointer";
 
 const Map = (props) => {
+  let theMap; let apiMaps;
+
   const startPointers = props.movements.map((movement) => {
     return (
       <Pointer
@@ -29,7 +31,9 @@ const Map = (props) => {
   });
 
   const handleApiLoaded = (map, maps, movements) => {
+    if (!map || !maps) return;
     const path = new Array;
+    console.log('movements are: ', movements);
     movements.forEach((movement) => {
       path[movement.id] = new maps.Polyline({
         path: [
@@ -43,8 +47,13 @@ const Map = (props) => {
       });
       path[movement.id].setMap(map);
     });
+    console.log(path);
   };
-  
+
+  useEffect(() => {
+    handleApiLoaded(theMap, apiMaps, props.movements)
+  }, [props.movements]);
+
   console.log("Loading map");
   return (
     <aside>
@@ -55,8 +64,11 @@ const Map = (props) => {
           defaultCenter={{ lat: 49.25, lng: -123 }}
           defaultZoom={8}
           yesIWantToUseGoogleMapApiInternals={true}
-          onGoogleApiLoaded={({ map, maps }) =>
-            handleApiLoaded(map, maps, props.movements)
+          onGoogleApiLoaded={({ map, maps }) => {
+            theMap = map;
+            apiMaps = maps;
+            return handleApiLoaded(map, maps, props.movements);
+          }
           }
         >
           {startPointers}
