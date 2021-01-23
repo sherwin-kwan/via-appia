@@ -1,3 +1,3 @@
-const colours = ["#f00", "#00f", "#080", "#880", "#808", "#088", "#000", "#888"];
+const colours = ["#f66", "#66f", "#0f0", "#ff0", "#f0f", "#0ff", "#aaa", "#fff"];
 
 export default colours;

@@ -24,6 +24,7 @@ const MovementsList = (props) => {
           key={movement.id}
           populateData={props.populateData}
           showDetails={showDetails}
+          setActiveMovement={setActiveMovement}
         />
       );
     });
@@ -90,6 +91,11 @@ const MovementsList = (props) => {
   );
 };
 
-MovementsList.propTypes = {};
+MovementsList.propTypes = {
+  detailsHook: PropTypes.object,
+  populateData: PropTypes.object,
+  movements: PropTypes.array,
+  setMovements: PropTypes.func
+};
 
 export default MovementsList;

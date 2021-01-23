@@ -3,6 +3,7 @@ import GoogleMapReact from "google-map-react";
 import myApiKey from "../helpers/apikey";
 import Pointer from "./Pointer";
 import colours from "../helpers/colours";
+import PropTypes from 'prop-types';
 
 const Map = (props) => {
   const [theMap, setTheMap] = useState(null);
@@ -33,7 +34,6 @@ const Map = (props) => {
   });
 
   const handleApiLoaded = (map, maps, movements) => {
-    console.log('Trying to do new movements', map, maps);
     if (!map || !maps) return;
     const path = new Array;
     console.log('movements are: ', movements);
@@ -56,7 +56,7 @@ const Map = (props) => {
 
   useEffect(() => {
     handleApiLoaded(theMap, apiMaps, props.movements)
-  }, [props.movements]);
+  }, [theMap, apiMaps, props.movements]);
 
   console.log("Loading map");
   return (
@@ -82,6 +82,11 @@ const Map = (props) => {
       </div>
     </aside>
   );
+};
+
+Map.propTypes = {
+  detailsHook: PropTypes.object,
+  movements: PropTypes.array
 };
 
 export default Map;

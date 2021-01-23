@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import colours from '../helpers/colours';
 
 const MovementRow = (props) => {
-  const { deleteFunction, editFunction } = crudHelpers();
+  const { deleteFunction } = crudHelpers();
   const { data } = props;
 
   return (
