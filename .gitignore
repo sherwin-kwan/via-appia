@@ -4,7 +4,8 @@
 # production
 /build
 
-
+# hiding api keys
+apikey.js
 
 # Logs
 logs
