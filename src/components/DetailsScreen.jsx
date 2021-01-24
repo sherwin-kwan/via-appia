@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import crudHelpers from "../helpers/crud";
 
 const DetailsScreen = (props) => {
   const { mode } = props;
-  const [movement, setMovement] = useState(props.movement);
+  const { activeMovement, setActiveMovement, setDetailsScreenShow } = props.detailsHook;
+  const [movement, setMovement] = useState(activeMovement);
   const { submitMovementForm } = crudHelpers();
 
   const handleChange = (event) => {
@@ -14,6 +15,10 @@ const DetailsScreen = (props) => {
       }
     });
   };
+
+  useEffect(() => {
+    setActiveMovement({});
+  }, []);
 
   const title = (mode === "CREATE") ? "Create Movement" : (mode === "EDIT") ? `Editing Movement ${movement.id}` : `Viewing Movement ${movement.id}`;
   return (
@@ -46,16 +51,16 @@ const DetailsScreen = (props) => {
           onClick={async (e) => {
             const successful = await submitMovementForm(e, mode, movement);
             if (successful) {
-              props.setDetailsScreenShow(false);
+              setDetailsScreenShow(false);
             } else {
               // Display error
-              alert("ERROR!");
+              console.log("Error saving the form");
             }
           }}
           value="Save" />
         <button
           className="cancel-button"
-          onClick={() => props.setDetailsScreenShow(false)}>
+          onClick={() => setDetailsScreenShow(false)}>
           {mode === "VIEW" ? "Back" : "Cancel"}
         </button>
       </div>
@@ -64,8 +69,8 @@ const DetailsScreen = (props) => {
 };
 
 DetailsScreen.propTypes = {
-  movement: PropTypes.object,
-  mode: PropTypes.string
+  mode: PropTypes.string,
+  detailsHook: PropTypes.object
 };
 
 export default DetailsScreen;

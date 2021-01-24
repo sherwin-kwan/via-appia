@@ -70,9 +70,8 @@ const MovementsList = (props) => {
     <>
       {detailsScreenShow && (
         <DetailsScreen
-          setDetailsScreenShow={setDetailsScreenShow}
+          detailsHook={props.detailsHook}
           mode={mode}
-          movement={activeMovement}
         />
       )}
       <div className="movements-list">
@@ -81,8 +80,8 @@ const MovementsList = (props) => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Start</th>
-              <th>Finish</th>
+              <th>Start ("A" on map)</th>
+              <th>Finish ("B" on map)</th>
               <th>Freight</th>
               <th>-</th>
               <th>-</th>

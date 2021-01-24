@@ -37,8 +37,11 @@ const Map = (props) => {
   });
 
   const handleApiLoaded = (map, maps, movements) => {
+    console.log('Attempting to render lines');
     if (!map || !maps) return;
-    const path = new Array;
+    const path = lines;
+    // Remove old lines before re-rendering them
+    path.forEach(polyline => polyline.setMap(null));
     movements.forEach((movement) => {
       path[movement.id] = new maps.Polyline({
         path: [
@@ -56,11 +59,11 @@ const Map = (props) => {
   };
 
   useEffect(() => {
-    if (activeId) {
+    if (activeId && lines[activeId]) {
       lines[activeId].setOptions({strokeWeight: 3});
     };
     setActiveId(activeMovement.id);
-    if (activeMovement.id) {
+    if (activeMovement.id && lines[activeMovement.id]) {
       lines[activeMovement.id].setOptions({strokeWeight: 9});
     }
   }, [activeMovement]);

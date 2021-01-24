@@ -12,7 +12,7 @@ const MovementRow = (props) => {
     if (!props.detailsScreenShow) props.activateMovement(data.id);
   }}
    onMouseLeave={() => {
-    if (!props.detailsScreenShow) props.setActiveMovement({});
+    props.setActiveMovement({});
   }} 
   style={{backgroundColor: colours[data.id % 8]}} >
     <td className="details-link" onClick={() => props.showDetails(data, "VIEW")}>{data.id}</td>

@@ -7,6 +7,9 @@ div.pointer {
   height: 1rem;
   width: 1rem;
   border-radius: 0.5rem;
+  position: relative;
+  top: -0.5rem;
+  left: -0.5rem;
   background-color: yellow;
   border: 1px solid black;
 }
