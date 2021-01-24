@@ -98,7 +98,7 @@ const MovementsList = (props) => {
 
 MovementsList.propTypes = {
   detailsHook: PropTypes.object,
-  populateData: PropTypes.object,
+  populateData: PropTypes.func,
   movements: PropTypes.array,
   setMovements: PropTypes.func
 };

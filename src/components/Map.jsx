@@ -8,6 +8,9 @@ import PropTypes from 'prop-types';
 const Map = (props) => {
   const [theMap, setTheMap] = useState(null);
   const [apiMaps, setApiMaps] = useState(null);
+  const [lines, setLines] = useState([]);
+  const [activeId, setActiveId] = useState(0);
+  const { activeMovement } = props.detailsHook;
 
   const startPointers = props.movements.map((movement) => {
     return (
@@ -48,18 +51,25 @@ const Map = (props) => {
         strokeOpacity: 1.0,
         strokeWeight: 3,
       });
-      
       path[movement.id].setMap(map);
     });
-    console.log(path);
+    setLines(path);
   };
- 
 
+  useEffect(() => {
+    if (activeId) {
+      lines[activeId].setOptions({strokeWeight: 3});
+    };
+    setActiveId(activeMovement.id);
+    if (activeMovement.id) {
+      lines[activeMovement.id].setOptions({strokeWeight: 9});
+    }
+  }, [activeMovement]);
+ 
   useEffect(() => {
     handleApiLoaded(theMap, apiMaps, props.movements)
   }, [theMap, apiMaps, props.movements]);
 
-  console.log("Loading map");
   return (
     <aside>
       <p>Map goes here: </p>
