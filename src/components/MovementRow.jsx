@@ -16,9 +16,9 @@ const MovementRow = (props) => {
   }} 
   style={{backgroundColor: colours[data.id % 8]}} >
     <td className="details-link" onClick={() => props.showDetails(data, "VIEW")}>{data.id}</td>
-    <td title={`Latitude: ${data.startLat}, Longitude: ${data.startLong}`}>{data.startLocation}</td>
-    <td title={`Latitude: ${data.endLat}, Longitude: ${data.endLong}`}>{data.endLocation}</td>
-    <td>{data.freight}</td>
+    <td title={`Latitude: ${data.startLat}, Longitude: ${data.startLong}`} onClick={() => props.showDetails(data, "VIEW")}>{data.startLocation}</td>
+    <td title={`Latitude: ${data.endLat}, Longitude: ${data.endLong}`} onClick={() => props.showDetails(data, "VIEW")}>{data.endLocation}</td>
+    <td onClick={() => props.showDetails(data, "VIEW")}>{data.freight}</td>
     <td><button onClick={() => props.showDetails(data, "EDIT")}>Edit</button></td>
     <td><button onClick={async () => {
       await deleteFunction(data.id);

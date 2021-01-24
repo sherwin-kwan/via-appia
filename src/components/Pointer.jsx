@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Pointer = (props) => {
   return (
-  <div className={"pointer " + props.id}>
+  <div className={"pointer " + props.id} style={props.style}>
     {props.text}
   </div>
   );

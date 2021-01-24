@@ -82,10 +82,10 @@ const MovementsList = (props) => {
             <tr>
               <th>ID</th>
               <th>Start ("A" on map)</th>
-              <th>Finish ("B" on map)</th>
+              <th>End ("B" on map)</th>
               <th>Freight</th>
-              <th>-</th>
-              <th>-</th>
+              <th>Edit</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>{movementRows}</tbody>

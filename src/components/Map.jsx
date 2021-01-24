@@ -15,6 +15,7 @@ const Map = (props) => {
   const startPointers = props.movements.map((movement) => {
     return (
       <Pointer
+        style={{backgroundColor: colours[movement.id % 8]}}
         key={"A" + String(movement.id)}
         id={"A" + String(movement.id)}
         lat={movement.startLat}
@@ -27,6 +28,7 @@ const Map = (props) => {
   const endPointers = props.movements.map((movement) => {
     return (
       <Pointer
+        style={{backgroundColor: colours[movement.id % 8]}}
         key={"B" + String(movement.id)}
         id={"B" + String(movement.id)}
         lat={movement.endLat}
