@@ -71,6 +71,7 @@ const MovementsList = (props) => {
       {detailsScreenShow && (
         <DetailsScreen
           detailsHook={props.detailsHook}
+          movements={props.movements}
           mode={mode}
         />
       )}

@@ -28,9 +28,20 @@ div.modal {
   form {
     display: grid;
     grid-template-columns: 1fr 1fr;
+
+    input, textarea {
+      margin: 0.25rem 1rem;
+    }
   }
 
   .hide {
     display: none;
   }
+}
+
+p.errors {
+  color: red;
+  margin: 0.5rem auto;
+  font-size: 1rem;
+  max-width: 90%;
 }
