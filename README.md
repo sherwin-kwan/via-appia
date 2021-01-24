@@ -34,6 +34,8 @@ yarn install
 
 5) A browser window should appear and navigate to the application automatically. (If it doesn't, open your browser of choice and navigate to http://localhost:3000 or whatever port number you chose for the React front-end)
 
+WARNING: The back-end is NOT linked to a database; the data is stored in an object which is seeded in `/via-appia/data/movements/js`. ANY NEW MOVEMENTS YOU CREATE WIL BE LOST IF THE SERVER IS KILLED OR RESTARTED.
+
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.\
