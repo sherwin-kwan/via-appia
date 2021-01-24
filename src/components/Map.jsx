@@ -75,7 +75,6 @@ const Map = (props) => {
 
   return (
     <aside>
-      <p>Map goes here: </p>
       <div className="map">
         <GoogleMapReact
           bootstrapURLKeys={{ key: myApiKey }}
