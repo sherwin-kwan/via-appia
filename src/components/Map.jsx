@@ -37,7 +37,6 @@ const Map = (props) => {
   });
 
   const handleApiLoaded = (map, maps, movements) => {
-    console.log('Attempting to render lines');
     if (!map || !maps) return;
     const path = lines;
     // Remove old lines before re-rendering them
