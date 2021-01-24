@@ -46,13 +46,14 @@ const Map = (props) => {
         geodesic: true,
         strokeColor: colours[movement.id % 8],
         strokeOpacity: 1.0,
-        strokeWeight: 5,
+        strokeWeight: 3,
       });
       
       path[movement.id].setMap(map);
     });
     console.log(path);
   };
+ 
 
   useEffect(() => {
     handleApiLoaded(theMap, apiMaps, props.movements)
@@ -71,7 +72,6 @@ const Map = (props) => {
           onGoogleApiLoaded={({ map, maps }) => {
             setTheMap(map);
             setApiMaps(maps);
-            console.log(`did it save `, theMap, apiMaps);
             return handleApiLoaded(map, maps, props.movements);
           }
           }

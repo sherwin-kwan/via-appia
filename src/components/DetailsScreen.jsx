@@ -12,7 +12,7 @@ const DetailsScreen = (props) => {
       return {...prev, 
         [event.target.name]: event.target.value
       }
-    })
+    });
   };
 
   const title = (mode === "CREATE") ? "Create Movement" : (mode === "EDIT") ? `Editing Movement ${movement.id}` : `Viewing Movement ${movement.id}`;
@@ -24,15 +24,15 @@ const DetailsScreen = (props) => {
           <label htmlFor="start-location">Starting Location: </label>
           <input type="text" id="start-location" name="startLocation" value={movement.startLocation || ""} onChange={handleChange} />
           <label htmlFor="start-lat">Starting Latitude: </label>
-          <input type="text" id="start-lat" name="startLat" value={mode === "EDIT" ? movement.startLat : ""} onChange={handleChange} />
+          <input type="text" id="start-lat" name="startLat" value={movement.startLat} onChange={handleChange} />
           <label htmlFor="start-long">Starting Longitude: </label>
-          <input type="text" id="start-long" name="startLong" value={mode === "EDIT" ? movement.startLong : ""} onChange={handleChange} />
+          <input type="text" id="start-long" name="startLong" value={movement.startLong} onChange={handleChange} />
           <label htmlFor="end-location">Ending Location: </label>
           <input type="text" id="end-location" name="endLocation" value={movement.endLocation || ""} onChange={handleChange} />
           <label htmlFor="end-lat">Ending Latitude: </label>
-          <input type="text" id="end-lat" name="endLat" value={mode === "EDIT" ? movement.endLat : ""} onChange={handleChange}/>
+          <input type="text" id="end-lat" name="endLat" value={movement.endLat} onChange={handleChange}/>
           <label htmlFor="end-long">Ending Longitude: </label>
-          <input type="text" id="end-long" name="endLong" value={mode === "EDIT" ? movement.endLong : ""} onChange={handleChange} />
+          <input type="text" id="end-long" name="endLong" value={movement.endLong} onChange={handleChange} />
           <label htmlFor="end-long">Freight: </label>
           <input type="text" id="end-long" name="freight" value={movement.freight || ""} onChange={handleChange} />
           <label htmlFor="end-long">Detailed Description: </label>
