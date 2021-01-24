@@ -8,7 +8,13 @@ const MovementRow = (props) => {
   const { data } = props;
 
   return (
-  <tr onMouseOver={() => props.activateMovement(data.id)} style={{backgroundColor: colours[data.id % 8]}} >
+  <tr onMouseOver={() => {
+    if (!props.detailsScreenShow) props.activateMovement(data.id);
+  }}
+   onMouseLeave={() => {
+    if (!props.detailsScreenShow) props.setActiveMovement({});
+  }} 
+  style={{backgroundColor: colours[data.id % 8]}} >
     <td className="details-link" onClick={() => props.showDetails(data, "VIEW")}>{data.id}</td>
     <td title={`Latitude: ${data.startLat}, Longitude: ${data.startLong}`}>{data.startLocation}</td>
     <td title={`Latitude: ${data.endLat}, Longitude: ${data.endLong}`}>{data.endLocation}</td>
@@ -25,7 +31,9 @@ MovementRow.propTypes = {
   data: PropTypes.object,
   showDetails: PropTypes.func, // Needed
   populateData: PropTypes.func,
-  activateMovement: PropTypes.func
+  activateMovement: PropTypes.func,
+  detailsScreenShow: PropTypes.bool,
+  setActiveMovement: PropTypes.func
 };
 
 export default MovementRow;

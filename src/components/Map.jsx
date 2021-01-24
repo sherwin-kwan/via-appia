@@ -39,7 +39,6 @@ const Map = (props) => {
   const handleApiLoaded = (map, maps, movements) => {
     if (!map || !maps) return;
     const path = new Array;
-    console.log('movements are: ', movements);
     movements.forEach((movement) => {
       path[movement.id] = new maps.Polyline({
         path: [

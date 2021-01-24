@@ -29,6 +29,8 @@ const MovementsList = (props) => {
           key={movement.id}
           populateData={props.populateData}
           showDetails={showDetails}
+          detailsScreenShow={detailsScreenShow}
+          setActiveMovement={setActiveMovement}
           activateMovement={activateMovement}
         />
       );
