@@ -16,6 +16,11 @@ const MovementsList = (props) => {
 
   const [movementRows, setMovementRows] = useState(null);
 
+  const activateMovement = (id) => {
+    const myMovement = props.movements.find(movement => movement.id === id);
+    if (myMovement) setActiveMovement(myMovement);
+  };
+
   useEffect(() => {
     const initialMovements = props.movements.map((movement) => {
       return (
@@ -24,7 +29,7 @@ const MovementsList = (props) => {
           key={movement.id}
           populateData={props.populateData}
           showDetails={showDetails}
-          setActiveMovement={setActiveMovement}
+          activateMovement={activateMovement}
         />
       );
     });
