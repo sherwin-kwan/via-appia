@@ -2,8 +2,8 @@ import React from 'react';
 
 const RoutePoint = (props) => {
   const { num, location, lat, long, code, distance, cumulDistance } = props.point;
-  const pickUp = code.filter(c => c.includes("A"));
-  const dropOff = code.filter(c => c.includes("B"));
+  const pickUp = code.filter(c => c.includes("A")).map(c => c.slice(0, c.length - 1));
+  const dropOff = code.filter(c => c.includes("B")).map(c => c.slice(0, c.length - 1));
   return (
     <tr>
       <td>{num}</td>

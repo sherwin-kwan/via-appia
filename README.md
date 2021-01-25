@@ -36,21 +36,39 @@ yarn install
 
 WARNING: The back-end is NOT linked to a database; the data is stored in an object which is seeded in `/via-appia/data/movements/js`. ANY NEW MOVEMENTS YOU CREATE WIL BE LOST IF THE SERVER IS KILLED OR RESTARTED.
 
-### `yarn test`
+# Using Via Appia
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Movements](/public/movements.png)
 
-### `yarn build`
+* You may switch between the "Movement" and "Route" views by clicking on the tabs in the header.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Create a new movement
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* Click "Create New Movement"
+* Fill out the form. All fields not marked with `(optional)` are required.
+* Click "Save"
+* If you enter the same start/end coordinates as a different movement, it will not save. Please instead edit the other movement and add the additional freight.
+* If an error occurs here, please confirm that the back-end API server is running.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Edit a movement
 
-### Deployment
+* Click on the "Edit" button for a movement
+* Edit the form and click "Save" to save
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Delete a movement
+
+* Click on the "Delete" button for a movement. Warning: There will be no confirmation dialog box - deletion is PERMANENT and there is no way of getting the data back!
+
+## Map
+
+* On the map, each movement appears as a line with the same colour as the corresponding row in the table. "A" marks the start location and "B" marks the end location.
+* When you mouse over a row in the table, that line will be highlighted on the map.
+* By default, the map displays the Pacific Northwest region of North America. You may need to drag to a different part of the world to see your movements.
+
+## Route View
+
+![Route View](/public/routes.png)
+
+* A list of locations for your driver to visit is presented in the table. The stop #'s correspond to the numbered spots on the map.
+* At each location, the numbers in "pick up" represent the movement IDs for the freight your driver has to pick up, and vice versa for "drop off".
+* A comma-separated list (e.g. "2, 5") means that *both* movements 2 and 5 end at the same spot, and your driver is to drop off both shipments.
