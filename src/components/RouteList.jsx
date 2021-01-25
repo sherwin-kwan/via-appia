@@ -6,20 +6,20 @@ import RoutePoint from './RoutePoint';
 const RouteList = (props) => {
   const points = findRoute(props.movements);
   const thePoints = points.map(point => {
-    return <RoutePoint data={point} />
+    return <RoutePoint point={point} />
   })
   return (<>
   <h2>Driver's Route</h2>
   <table>
     <thead>
-      <th>
-        <td>Stop #</td>
-        <td>Location</td>
-        <td>Latitude</td>
-        <td>Longitude</td>
-        <td>Pick up</td>
-        <td>Drop off</td>
-      </th>
+      <tr>
+        <th>Stop #</th>
+        <th>Location</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Pick up</th>
+        <th>Drop off</th>
+      </tr>
     </thead>
     <tbody>
       {thePoints}

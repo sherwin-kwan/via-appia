@@ -5,6 +5,7 @@ import Map from "./Map";
 import crudHelpers from "../helpers/crud";
 import MovementsList from "./MovementsList";
 import useDetailsScreen from "../helpers/useDetailsScreen";
+import RouteList from './RouteList';
 
 function App() {
   // States
@@ -32,6 +33,9 @@ function App() {
         />
         <Map movements={movements} detailsHook={detailsHook} />
       </main>
+      <footer>
+        <RouteList movements={movements} />
+      </footer>
     </div>
   );
 }
