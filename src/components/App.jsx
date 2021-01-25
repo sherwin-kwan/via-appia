@@ -5,7 +5,7 @@ import Map from "./Map";
 import crudHelpers from "../helpers/crud";
 import MovementsList from "./MovementsList";
 import useDetailsScreen from "../helpers/useDetailsScreen";
-import RouteList from './RouteList';
+import RouteList from "./RouteList";
 
 function App() {
   // States
@@ -16,13 +16,13 @@ function App() {
   async function populateData() {
     const data = await crudHelpers().getMovementData();
     setMovements(data);
-  };
+  }
 
   return (
     <div className="App">
       <header>
         <img src={logo} className="App-logo" alt="logo" />
-        VIA APPIA
+        VIA APPIA: Get all your shipments in order!
       </header>
       <main>
         <MovementsList
@@ -33,9 +33,10 @@ function App() {
         />
         <Map movements={movements} detailsHook={detailsHook} />
       </main>
-      <footer>
+      <main>
         <RouteList movements={movements} />
-      </footer>
+      </main>
+      <footer></footer>
     </div>
   );
 }

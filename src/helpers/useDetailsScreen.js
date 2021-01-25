@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+// Custom hook giving access to states for the details screen
+
 const useDetailsScreen = (data, show) => {
   
   const [mode, setMode] = useState("VIEW");
