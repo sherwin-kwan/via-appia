@@ -26,7 +26,7 @@ cd ../via-appia-api
 yarn install
 ```
 
-3) You will need access to a [Google Maps JavaScript API key](https://developers.google.com/maps/documentation/javascript/get-api-key). Follow the instructions and enter your API key on line 3 of `/src/components/helpers/apiKey.example.js`, then rename the file to `apiKey.js` (leave it in the `helpers` folder). This is important - THE APP WILL NOT COMPILE WITHOUT A MAPS API KEY!
+3) You will need access to a [Google Maps JavaScript API key](https://developers.google.com/maps/documentation/javascript/get-api-key). Follow the instructions and enter your API key on line 3 of `/src/components/helpers/apikey.example.js`, then rename the file to `apikey.js` (leave it in the `helpers` folder). This is important - THE APP WILL NOT COMPILE WITHOUT A MAPS API KEY!
 
 4) Ensure that you have ports 3000 and 3001 available on your machine - this React front-end will run on port 3000 and the API on port 3001. 
 
@@ -38,4 +38,4 @@ yarn install
 
 5) A browser window should appear and navigate to the application automatically. (If it doesn't, open your browser of choice and navigate to http://localhost:3000 or whatever port number you chose for the React front-end)
 
-WARNING: The back-end is NOT linked to a database; the data is stored in an object which is seeded in `/via-appia/data/movements/js`. ANY NEW MOVEMENTS YOU CREATE WIL BE LOST IF THE SERVER IS KILLED OR RESTARTED.
+WARNING: The back-end is NOT linked to a database; the data is stored in an object which is seeded in `/via-appia/data/movements.js`. ANY NEW MOVEMENTS YOU CREATE WIL BE LOST IF THE SERVER IS KILLED OR RESTARTED.
