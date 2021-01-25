@@ -1,3 +1,5 @@
+import haversine from 'haversine';
+
 const findRoute = (movements) => {
   let points = [];
   const southFirst = [];
@@ -35,8 +37,18 @@ const findRoute = (movements) => {
     }
   }
   // Add a "num" variable to display in the table
+  // The Haversine formula calculates distances between two points given latitude and longitude
   for (let i = 0; i < points.length; i++) {
     points[i] = {...points[i], num: i + 1};
+    if (i === 0) {
+        points[i].distance = 0;
+        points[i].cumulDistance = 0;
+     } else {
+      points[i].distance = Math.round(haversine(
+        {latitude: points[i-1].lat, longitude: points[i-1].long},
+        {latitude: points[i].lat, longitude: points[i].long}));
+      points[i].cumulDistance = points[i-1].cumulDistance + points[i].distance;
+    }; 
   };
   console.log('points are: ', points);
   return points;

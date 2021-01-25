@@ -18,10 +18,12 @@ const RouteList = (props) => {
             <tr>
               <th>Stop #</th>
               <th>Location</th>
-              <th>Latitude</th>
-              <th>Longitude</th>
+              <th>Latitude (deg)</th>
+              <th>Longitude (deg)</th>
               <th>Pick up</th>
               <th>Drop off</th>
+              <th>Distance (km)</th>
+              <th>Cumul. Distance (km)</th>
             </tr>
           </thead>
           <tbody>{thePoints}</tbody>
