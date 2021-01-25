@@ -12,7 +12,7 @@ const RouteList = (props) => {
   return (
     <>
       <div>
-        <h2>Driver's Route</h2>
+        <h2>DRIVER'S ROUTE</h2>
         <table>
           <thead>
             <tr>

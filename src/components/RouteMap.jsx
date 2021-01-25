@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import myApiKey from "../helpers/apikey";
 import GoogleMapReact from "google-map-react";
+import Pointer from './Pointer';
 
 const RouteMap = (props) => {
   const [theMap, setTheMap] = useState(null);
@@ -15,7 +16,6 @@ const RouteMap = (props) => {
     if (pline) pline.setMap(null);
     const path = [];
     points.forEach((point) => {
-      console.log(point.lat, point.long);
       path.push({lat: point.lat, lng: point.long});
     });
     const newPline = new maps.Polyline({
@@ -28,6 +28,17 @@ const RouteMap = (props) => {
     newPline.setMap(map);
     setPline(newPline);
   };
+
+  const pointers = props.points.map(point => {
+    return (<Pointer
+      style={{backgroundColor: "#ff0"}}
+      key={point.num}
+      id={String(point.num)}
+      lat={point.lat}
+      lng={point.long}
+      text={String(point.num)}
+    />);
+  });
 
   return (
     <>

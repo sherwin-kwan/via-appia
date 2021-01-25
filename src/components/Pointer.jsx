@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Pointer = (props) => {
+  console.log('Rendering a pointer');
   return (
   <div className={"pointer " + props.id} style={props.style}>
     {props.text}

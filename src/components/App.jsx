@@ -10,6 +10,7 @@ import RouteList from "./RouteList";
 function App() {
   // States
   const [movements, setMovements] = useState([]);
+  const [page, setPage] = useState("MOVEMENT");
   // Custom Hooks
   const detailsHook = useDetailsScreen();
 
@@ -22,19 +23,22 @@ function App() {
     <div className="App">
       <header>
         <img src={logo} className="App-logo" alt="logo" />
-        VIA APPIA: Get all your shipments in order!
+        <p>VIA APPIA: Get all your shipments in order!</p>
+        <p onClick={() => setPage("MOVEMENT")}>Movements</p>
+        <p onClick={() => setPage("ROUTE")}>Route</p>
       </header>
-      <main>
+      {page === "MOVEMENT" && (<main>
         <MovementsList
           movements={movements}
           setMovements={setMovements}
           detailsHook={detailsHook}
           populateData={populateData}
         />
-      </main>
-      <main>
+        <Map movements={movements} detailsHook={detailsHook} />
+      </main>)}
+      {page === "ROUTE" && (<main>
         <RouteList movements={movements} />
-      </main>
+      </main>)}
       <footer></footer>
     </div>
   );
