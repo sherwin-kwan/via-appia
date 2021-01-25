@@ -21,7 +21,7 @@ const RouteMap = (props) => {
     const newPline = new maps.Polyline({
       path,
       geodesic: true,
-      strokeColor: "#ff0",
+      strokeColor: "#000",
       strokeOpacity: 1.0,
       strokeWeight: 5,
     });
@@ -31,7 +31,7 @@ const RouteMap = (props) => {
 
   const pointers = props.points.map(point => {
     return (<Pointer
-      style={{backgroundColor: "#ff0"}}
+      style={{backgroundColor: "#f0f"}}
       key={point.num}
       id={String(point.num)}
       lat={point.lat}
@@ -46,7 +46,7 @@ const RouteMap = (props) => {
         <GoogleMapReact
           bootstrapURLKeys={{ key: myApiKey }}
           defaultCenter={{ lat: 45, lng: -120 }}
-          defaultZoom={3}
+          defaultZoom={5}
           yesIWantToUseGoogleMapApiInternals={true}
           onGoogleApiLoaded={({ map, maps }) => {
             setTheMap(map);

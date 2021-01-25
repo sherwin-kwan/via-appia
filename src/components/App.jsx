@@ -24,8 +24,8 @@ function App() {
       <header>
         <img src={logo} className="App-logo" alt="logo" />
         <p>VIA APPIA: Get all your shipments in order!</p>
-        <p onClick={() => setPage("MOVEMENT")}>Movements</p>
-        <p onClick={() => setPage("ROUTE")}>Route</p>
+        <p onClick={() => setPage("MOVEMENT")} className={page === "MOVEMENT" ? "highlight" : ""}>Movements</p>
+        <p onClick={() => setPage("ROUTE")} className={page === "ROUTE" ? "highlight" : ""}>Route</p>
       </header>
       {page === "MOVEMENT" && (<main>
         <MovementsList
