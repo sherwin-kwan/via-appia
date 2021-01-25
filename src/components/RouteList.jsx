@@ -28,7 +28,7 @@ const RouteList = (props) => {
         </table>
       </div>
       <aside>
-        <RouteMap />
+        <RouteMap points={points} />
       </aside>
     </>
   );

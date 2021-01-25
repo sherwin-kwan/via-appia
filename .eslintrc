@@ -5,36 +5,36 @@
   ],
   "rules": {
     "indent": [
-      "error",
+      "warn",
       2
     ],
     "linebreak-style": [
-      "error",
+      "warn",
       "unix"
     ],
     "semi": [
-      "error",
+      "warn",
       "always"
     ],
-    "no-var": "error",
+    "no-var": "warn",
     "no-console": "off",
     "no-unused-vars": "warn",
     "func-call-spacing": [
-      "error",
+      "warn",
       "never"
     ],
-    "space-before-blocks": "error",
-    "keyword-spacing": "error",
-    "no-trailing-spaces": ["error", { "skipBlankLines": true }],
-    "semi-spacing": "error",
-    "func-style": ["error", "expression"],
-    "space-infix-ops": "error",
-    "space-in-parens": "error",
-    "camelcase": "error",
-    "eqeqeq": "error",
-    "brace-style": "error",
+    "space-before-blocks": "warn",
+    "keyword-spacing": "warn",
+    "no-trailing-spaces": ["warn", { "skipBlankLines": true }],
+    "semi-spacing": "warn",
+    "func-style": ["warn", "expression"],
+    "space-infix-ops": "warn",
+    "space-in-parens": "warn",
+    "camelcase": "warn",
+    "eqeqeq": "warn",
+    "brace-style": "warn",
     "space-before-function-paren": [ "warn", { "anonymous": "never", "named": "never", "asyncArrow": "never" } ],
-    "func-names": ["error", "never"],
+    "func-names": ["warn", "never"],
     "quotes": "off"
   }
 }

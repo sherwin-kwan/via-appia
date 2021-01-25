@@ -31,7 +31,6 @@ function App() {
           detailsHook={detailsHook}
           populateData={populateData}
         />
-        <Map movements={movements} detailsHook={detailsHook} />
       </main>
       <main>
         <RouteList movements={movements} />
