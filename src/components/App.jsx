@@ -37,7 +37,7 @@ function App() {
         <Map movements={movements} detailsHook={detailsHook} />
       </main>)}
       {page === "ROUTE" && (<main>
-        <RouteList movements={movements} />
+        <RouteList movements={movements} detailsHook={detailsHook} movements={movements} setPage={setPage} />
       </main>)}
       <footer></footer>
     </div>

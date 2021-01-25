@@ -34,14 +34,13 @@ header {
   p.highlight {
     background-color: purple;
     border-radius: 0.4rem;
-  };
+  }
 
   > * {
     margin: 0 2rem;
     font-size: 1.2rem;
     padding: 1rem;
-  };
-
+  }
 }
 
 @keyframes App-logo-spin {
@@ -56,4 +55,10 @@ header {
 main {
   display: flex;
   justify-content: space-around;
+}
+
+a {
+  color: darkblue;
+  text-decoration: underline;
+  cursor: pointer;
 }

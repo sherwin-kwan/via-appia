@@ -7,7 +7,7 @@ import RouteMap from './RouteMap';
 const RouteList = (props) => {
   const points = findRoute(props.movements);
   const thePoints = points.map((point) => {
-    return <RoutePoint point={point} />;
+    return <RoutePoint point={point} detailsHook={props.detailsHook} setPage={props.setPage}  movements={props.movements} />;
   });
   return (
     <>
@@ -30,7 +30,7 @@ const RouteList = (props) => {
         </table>
       </div>
       <aside>
-        <RouteMap points={points} />
+        <RouteMap points={points}/>
       </aside>
     </>
   );
