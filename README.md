@@ -26,6 +26,8 @@ cd ../via-appia-api
 yarn install
 ```
 
+3) You will need access to a [Google Maps JavaScript API key](https://developers.google.com/maps/documentation/javascript/get-api-key). Follow the instructions and enter your API key on line 3 of `/src/components/helpers/apiKey.example.js`, then rename the file to `apiKey.js` (leave it in the `helpers` folder). This is important - THE APP WILL NOT COMPILE WITHOUT A MAPS API KEY!
+
 3) Ensure that you have ports 3000 and 3001 available on your machine - this React front-end will run on port 3000 and the API on port 3001. 
 
 - To change the port for the front-end React app to XXXX, create a new environment file at `/via-appia/.env` and enter the text "PORT=XXXX"
