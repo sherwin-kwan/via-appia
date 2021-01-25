@@ -18,7 +18,7 @@ const findRoute = (movements) => {
       code: [String(movement.id) + "B"]
     });
     if (movement.endLat > movement.startLat || movement.endLat === movement.startLat && movement.endLong > movement.startLong) {
-      southFirst.push(String(movement.id) + "B") ;
+      southFirst.push(String(movement.id) + "B");
     }
   });
   points = points.sort((a, b) => b.long - a.long).sort((a, b) => b.lat - a.lat);
@@ -31,8 +31,8 @@ const findRoute = (movements) => {
   points = points.concat(moveToEnd);
   // If the same point occurs in multiple movements, combine them into one point
   for (let i = points.length - 1; i > 0; i--) {
-    if (points[i].lat === points[i-1].lat && points[i].long === points[i-1].long) {
-      points[i-1].code.push(points[i].code[0]);
+    if (points[i].lat === points[i - 1].lat && points[i].long === points[i - 1].long) {
+      points[i - 1].code.push(points[i].code[0]);
       points.splice(i, 1);
     }
   }
@@ -41,14 +41,14 @@ const findRoute = (movements) => {
   for (let i = 0; i < points.length; i++) {
     points[i] = {...points[i], num: i + 1};
     if (i === 0) {
-        points[i].distance = 0;
-        points[i].cumulDistance = 0;
-     } else {
+      points[i].distance = 0;
+      points[i].cumulDistance = 0;
+    } else {
       points[i].distance = Math.round(haversine(
-        {latitude: points[i-1].lat, longitude: points[i-1].long},
+        {latitude: points[i - 1].lat, longitude: points[i - 1].long},
         {latitude: points[i].lat, longitude: points[i].long}));
-      points[i].cumulDistance = points[i-1].cumulDistance + points[i].distance;
-    }; 
+      points[i].cumulDistance = points[i - 1].cumulDistance + points[i].distance;
+    };
   };
   console.log('points are: ', points);
   return points;

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import myApiKey from "../helpers/apikey";
 import GoogleMapReact from "google-map-react";
 import Pointer from './Pointer';
+import PropTypes from "prop-types";
 
 const RouteMap = (props) => {
   const [theMap, setTheMap] = useState(null);
@@ -59,6 +59,10 @@ const RouteMap = (props) => {
       </div>
     </>
   );
+};
+
+RouteMap.propTypes = {
+  points: PropTypes.array
 };
 
 export default RouteMap;

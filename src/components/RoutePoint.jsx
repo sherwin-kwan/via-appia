@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
 const RoutePoint = (props) => {
   const { num, location, lat, long, code, distance, cumulDistance } = props.point;
@@ -43,6 +44,13 @@ const RoutePoint = (props) => {
       <td>{cumulDistance}</td>
     </tr>
   );
+};
+
+RoutePoint.propTypes = {
+  point: PropTypes.object,
+  movements: PropTypes.array,
+  detailsHook: PropTypes.object,
+  setPage: PropTypes.func
 };
 
 export default RoutePoint;

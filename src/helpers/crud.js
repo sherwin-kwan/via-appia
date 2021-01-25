@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const crudHelpers = () => {
 
-  const getMovementData = async () => {
+  const getMovementData = async() => {
     try {
       const rawData = await axios.get("/movements");
       const { data } = rawData;
@@ -14,7 +14,7 @@ const crudHelpers = () => {
     }
   };
 
-  const editFunction = async (obj) => {
+  const editFunction = async(obj) => {
     if (obj.id) {
       try {
         await axios.post(`/movements/${obj.id}`, obj);
@@ -26,7 +26,7 @@ const crudHelpers = () => {
     }
   };
   
-  const deleteFunction = async (id) => {
+  const deleteFunction = async(id) => {
     if (id) {
       try {
         await axios.delete(`/movements/${id}`);
@@ -36,9 +36,9 @@ const crudHelpers = () => {
     } else {
       console.log('Error: No ID provided for deleting');
     }
-  };  
+  };
   
-  const submitMovementForm = async (event, mode, data, movements) => {
+  const submitMovementForm = async(event, mode, data, movements) => {
     event.preventDefault();
     const validationResult = validateData(data, movements);
     if (typeof validationResult === 'string') throw new Error(validationResult);
@@ -80,11 +80,11 @@ const crudHelpers = () => {
     };
     const otherMovements = movements.filter(movement => movement.id !== data.id);
     for (const movement of otherMovements) {
-      if (movement.startLat == data.startLat && movement.startLong == data.startLong && 
+      if (movement.startLat == data.startLat && movement.startLong == data.startLong &&
          movement.endLat == data.endLat && movement.endLong == data.endLong) {
         return `You have entered identical start/end coordinates to existing movement ${movement.id}. 
         Please add freight to that movement instead of creating a new movement.`;
-      }    
+      }
     };
     return data;
   };

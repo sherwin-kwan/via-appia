@@ -30,7 +30,9 @@ const RouteList = (props) => {
         </table>
       </div>
       <aside>
-        <RouteMap points={points}/>
+        {props.movements.length ? <RouteMap points={points}/> : (<tr>
+          <td colSpan="8">Please create at least one movement to display a route.</td>
+        </tr>)};
       </aside>
     </>
   );
@@ -38,6 +40,8 @@ const RouteList = (props) => {
 
 RouteList.propTypes = {
   movements: PropTypes.array,
+  detailsHook: PropTypes.object,
+  setPage: PropTypes.func
 };
 
 export default RouteList;
